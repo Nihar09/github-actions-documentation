@@ -56,20 +56,20 @@ Push the file, then open the **Actions** tab and click the latest **CI** run. A 
 
 ## Troubleshooting
 
-**The workflow does not run**
+### The workflow does not run
 Check that the file is in `.github/workflows` and ends in `.yml` or `.yaml`. A file in any other folder is ignored.
 
-**The run fails with a YAML error**
+### The run fails with a YAML error
 The most common cause is indentation. YAML does not allow tabs, so use spaces and keep the nesting the same as in the example above.
 
-**`npm ci` fails**
+### `npm ci` fails
 This command needs a `package-lock.json` file. Run `npm install` locally, commit the lock file, and push again.
 
-**Tests pass on your machine but fail in the workflow**
+### Tests pass on your machine but fail in the workflow
 The runner may use a different Node.js version from yours. Set `node-version` to the version you use locally.
 
-**The workflow is blocked or shows a permissions error**
+### The workflow is blocked or shows a permissions error
 In your repository, go to **Settings**, then **Actions**, then **General**, and check that actions are allowed to run.
 
-**A warning about Node.js 20 being deprecated**
-Your workflow is using an older version of an action. Update the `uses` lines to the latest version, for example `actions/checkout@v6`, and the warning goes away.
+### A warning about Node.js 20 being deprecated
+This is a warning, not an error, so the run still passes. It appears when a workflow uses an older version of an action. Change the version in your `uses` lines, for example to `actions/checkout@v6`, and the warning goes away.
