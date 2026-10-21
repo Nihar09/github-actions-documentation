@@ -1,47 +1,55 @@
 ---
 title: Quickstart
-description: Guide a new reader through one useful workflow and show them how to verify it.
+description: Create and run your first GitHub Actions workflow in a few minutes.
 ---
 
-A strong quickstart produces one meaningful result. Replace the placeholders
-below with the shortest supported path for your product.
+In this quickstart, you will create a workflow that prints a message every time you push to your repository. It is a small example, but it covers the full cycle: write a workflow, push it, and see it run.
 
 ## Before you begin
 
-List only the requirements needed for this workflow:
+You need a GitHub repository where you can push code. A new, empty repository works fine.
 
-- An account or credential, when required
-- A supported runtime, device, browser, or operating system
-- Permission to create or change the resource used in the example
+## Create the workflow
 
-<Steps>
-  <Step title="Install the required tool">
-    Give readers one recommended installation command.
+1. In your repository, create a folder named `.github/workflows`.
+2. Inside it, create a file named `hello.yml`.
+3. Add this content:
 
-    ```bash
-    npm install your-package
-    ```
-  </Step>
-  <Step title="Add the minimum configuration">
-    Include only the values needed for the first successful run.
+```yaml
+name: Hello Workflow
 
-    ```bash
-    your-cli init
-    ```
-  </Step>
-  <Step title="Complete the first task">
-    Use a realistic example that produces an observable result.
+on: push
 
-    ```bash
-    your-cli start
-    ```
-  </Step>
-  <Step title="Verify the result">
-    State exactly what the reader should see and how to recover when it does not appear.
-  </Step>
-</Steps>
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello
+        run: echo "Hello from GitHub Actions"
+```
 
-## Choose the next task
+Here is what each part does:
 
-Link to the guide that naturally follows this result. Avoid ending the reader’s
-journey with a generic list of every feature.
+- `on: push` tells GitHub to run the workflow on every push.
+- `runs-on` picks the machine that runs your job.
+- `steps` lists the commands to run. Here, there is just one.
+
+## Run it
+
+Commit the file and push it to GitHub. The push starts the workflow.
+
+## Check the result
+
+1. Open your repository on GitHub and click the **Actions** tab.
+2. Click the latest run of **Hello Workflow**.
+3. Click the **hello** job, then expand the **Say hello** step.
+
+You should see `Hello from GitHub Actions` in the log, and a green check mark next to the run.
+
+## If nothing runs
+
+Check that the file is inside `.github/workflows` and that its name ends in `.yml`. If the run shows a red mark, open it and read the error. The next guide covers common problems in more detail.
+
+## Next step
+
+Now that you have a workflow running, [set up a CI workflow that runs your tests](/guides/create-a-site).
