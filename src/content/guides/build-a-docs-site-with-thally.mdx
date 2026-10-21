@@ -1,0 +1,74 @@
+---
+title: Build a documentation site with Thally
+description: How I set up, configured, and published a small GitHub Actions docs site with Thally, including the problems I ran into.
+---
+
+I built a small documentation site for GitHub Actions with Thally. This article walks through how I did it so you can build something similar.
+
+## Prerequisites
+
+- A [Thally Cloud](https://app.thally.io/) account
+- A GitHub account that can install the Thally GitHub App
+- A topic you know well enough to write a working quickstart for
+
+You do not need Node.js or a local checkout. I made every change in GitHub's web editor.
+
+## Set up the site
+
+I followed [Thally's quickstart](https://docs.thally.io/quickstart).
+
+1. Sign in to Thally Cloud. I used Google.
+2. Select **Create a site**.
+3. Enter a site name, a short description, and the `thally.app` address you want. I used `github-actions-guide`.
+4. Choose **Create a new docs repository**. Thally creates the GitHub repository for you, and you may be asked to approve the Thally GitHub App.
+5. Review the details and select **Publish site**.
+
+When publishing finishes, the Home page shows the site as **Live**. A change takes about one to two minutes to appear after you commit.
+
+## Learn the repository layout
+
+Thally creates a repository with the starter files already in it. Three places matter:
+
+- `src/content` holds the pages, written in MDX
+- `docs.json` controls the tabs, sidebar groups, and page order
+- `src/content/guides` holds the guide pages
+
+The starter site comes with template pages about Thally itself, so the first job is replacing them with your own.
+
+## Configure the navigation
+
+In `docs.json`, each tab contains groups, and each group lists page names without the `.mdx` extension. I removed the template tabs and groups and kept two tabs: **Get started** (introduction and quickstart) and **Guides** (one guide).
+
+Keep this file in step with your pages. If a page is listed here but the file is missing, readers get a 404.
+
+## Write the content
+
+I wrote three pages:
+
+- **Introduction:** what GitHub Actions is and who the site is for
+- **Quickstart:** a workflow that prints a message on every push
+- **Guide:** a CI workflow that runs tests on every push, with a troubleshooting section
+
+Each page starts with frontmatter (`title`, `description`). The introduction also has `mode: home`, which makes it the landing page. I edited the files directly on GitHub and committed to `main`.
+
+## Publish and update
+
+Every commit to `main` triggers a new deployment. I committed, waited a minute or two, and refreshed the live site. Before submitting, I made the repository public so others can read the source.
+
+## Problems I ran into
+
+**I could not open the repository from Thally.** The repository link in Thally was not clickable for me. I opened the repository from my GitHub account instead.
+
+**A 404 after renaming a page.** I renamed my guide file but did not update `docs.json`. The sidebar showed the old page name, and clicking it gave a 404. Updating the page name in `docs.json` fixed it. Links inside other pages that pointed to the old address also had to be changed.
+
+**Template links.** The starter introduction page had cards that linked to template pages I had removed. I replaced those cards with links to my own pages.
+
+## Test your own instructions
+
+I tested the quickstart and the guide in a separate practice repository, following them exactly as written. This found three problems:
+
+- The quickstart told readers to click the run named **Hello Workflow**, but GitHub names each run after the commit message. I rewrote that step.
+- The guide used `actions/checkout@v4` and `actions/setup-node@v4`, which now show a Node.js 20 deprecation warning. I moved both to `@v6` and added a troubleshooting entry.
+- The troubleshooting titles ran into their text, because a single line break does not start a new paragraph in MDX. I changed the titles to headings.
+
+None of these showed up while writing. They only appeared when I followed the steps like a new reader.
