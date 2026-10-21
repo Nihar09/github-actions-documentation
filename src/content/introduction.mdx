@@ -1,45 +1,33 @@
 ---
 title: Introduction
-description: Give readers a clear path from their first question to a result they can verify.
+description: Learn how to automate builds and tests in your repository with GitHub Actions.
 mode: home
 ---
 
 <Hero
-  title="Build documentation around the reader"
-  subtitle="Start with a useful first result, organize what follows, and publish every format from one reviewable source."
+  title="Automate your workflow with GitHub Actions"
+  subtitle="Run tests, build code, and deploy from the repository you already use."
   primaryLabel="Get started"
   primaryHref="/quickstart"
-  secondaryLabel="Publish your docs"
+  secondaryLabel="Set up CI"
   secondaryHref="/guides/create-a-site"
 />
 
-## Build the reader journey
+## What is GitHub Actions?
 
-Begin with the task that brings most readers to your documentation, then make
-the next useful step obvious.
+GitHub Actions lets you automate tasks in your repository. You write the steps in a YAML file, and GitHub runs them when something happens, like a push or a pull request. Most people use it to run tests, build code, and deploy.
+
+## Who is this for?
+
+This guide is for developers who are new to GitHub Actions. You should know basic Git and have a GitHub repository to practice in. No other setup is needed.
+
+## Where to start
 
 <CardGroup cols="2">
-  <Card title="Write your quickstart" icon="party-horn" href="/quickstart">
-    Turn prerequisites, setup, one realistic task, and verification into a short path.
+  <Card title="Quickstart" icon="party-horn" href="/quickstart">
+    Create and run your first workflow in a few minutes.
   </Card>
-  <Card title="Organize your navigation" icon="grid-round" href="/customization">
-    Group related tasks and references around how people use your product.
-  </Card>
-  <Card title="Document your API" icon="code-simple" href="/api">
-    Replace `openapi.yaml` to publish browsable endpoint docs with a live playground.
-  </Card>
-  <Card title="Learn the Thally workflow" icon="wrench" href="/guides/create-a-site">
-    Create, publish, and update sites from the Cloud dashboard, the CLI, or your AI tools.
+  <Card title="Run tests on every push" icon="wrench" href="/guides/create-a-site">
+    Set up a basic CI workflow, with troubleshooting tips.
   </Card>
 </CardGroup>
-
-## Publish from one source
-
-Thally turns the same reviewed content into HTML, search, agent discovery files,
-Markdown mirrors, and a read-only MCP surface — so people and AI tools read the
-same, current answer. Add only the locales your readers need.
-
-<Note type="info" title="Start with the product, not the template">
-  Replace this page with the questions, terminology, and workflows your readers
-  already use. Keep `docs.json` focused on the path between those tasks.
-</Note>
