@@ -1,0 +1,72 @@
+---
+title: Run tests on every push
+description: Set up a workflow that runs your tests automatically on every push and pull request.
+---
+
+A CI workflow runs your tests every time code changes, so you find problems before they reach the main branch. This guide sets one up for a Node.js project.
+
+## Before you begin
+
+- A GitHub repository with a Node.js project
+- A `package.json` with a working `npm test` script
+- A `package-lock.json` file committed to the repository
+
+## Create the workflow
+
+Create a file named `.github/workflows/ci.yml` with this content:
+
+```yaml
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+```
+
+## How it works
+
+- `on` runs the workflow on every push and on every pull request.
+- `actions/checkout` copies your code onto the runner. Without it, the job has no files to work with.
+- `actions/setup-node` installs Node.js. The `cache` option saves downloaded packages, so later runs are faster.
+- `npm ci` installs the exact versions from `package-lock.json`.
+- `npm test` runs your tests. If it fails, the whole run fails.
+
+## Check the result
+
+Push the file, then open the **Actions** tab and click the latest **CI** run. A green check means your tests passed. A red mark means a step failed, so open the run and read the log of that step.
+
+## Troubleshooting
+
+**The workflow does not run**
+Check that the file is in `.github/workflows` and ends in `.yml` or `.yaml`. A file in any other folder is ignored.
+
+**The run fails with a YAML error**
+The most common cause is indentation. YAML does not allow tabs, so use spaces and keep the nesting the same as in the example above.
+
+**`npm ci` fails**
+This command needs a `package-lock.json` file. Run `npm install` locally, commit the lock file, and push again.
+
+**Tests pass on your machine but fail in the workflow**
+The runner may use a different Node.js version from yours. Set `node-version` to the version you use locally.
+
+**The workflow is blocked or shows a permissions error**
+In your repository, go to **Settings**, then **Actions**, then **General**, and check that actions are allowed to run.
