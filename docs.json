@@ -37,7 +37,7 @@
         {
           "group": "Continuous integration",
           "pages": [
-            "guides/create-a-site"
+            "guides/run-tests-on-push"
           ]
         }
       ]
