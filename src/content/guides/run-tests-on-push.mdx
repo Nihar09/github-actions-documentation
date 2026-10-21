@@ -27,12 +27,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -70,3 +70,6 @@ The runner may use a different Node.js version from yours. Set `node-version` to
 
 **The workflow is blocked or shows a permissions error**
 In your repository, go to **Settings**, then **Actions**, then **General**, and check that actions are allowed to run.
+
+**A warning about Node.js 20 being deprecated**
+Your workflow is using an older version of an action. Update the `uses` lines to the latest version, for example `actions/checkout@v6`, and the warning goes away.
