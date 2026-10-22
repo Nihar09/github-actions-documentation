@@ -183,6 +183,5 @@ export const siteConfig: SiteConfig = {
     { label: "Get started", href: "/quickstart" },
     { label: "Support", href: "https://github.com/Nihar09/github-actions-documentation/issues/new" },
     { label: "GitHub", href: "https://github.com/Nihar09/github-actions-documentation" },
-    { label: "Changelog", href: "/changelog" },
   ],
 };
