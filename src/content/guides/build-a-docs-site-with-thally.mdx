@@ -57,11 +57,13 @@ Every commit to `main` triggers a new deployment. I committed, waited a minute o
 
 ## Problems I ran into
 
-**I could not open the repository from Thally.** The repository link in Thally was not clickable for me. I opened the repository from my GitHub account instead.
+**The repository link was not clickable at first.** I could not click the repository link in Thally, so I opened the repository from my GitHub account instead. It works now.
 
 **A 404 after renaming a page.** I renamed my guide file but did not update `docs.json`. The sidebar showed the old page name, and clicking it gave a 404. Updating the page name in `docs.json` fixed it. Links inside other pages that pointed to the old address also had to be changed.
 
 **Template links.** The starter introduction page had cards that linked to template pages I had removed. I replaced those cards with links to my own pages.
+
+**The site name did not change.** The header showed my old site name, so I changed `name` in `src/data/site.ts`, but the header kept the old name. The dashboard has its own **Site name** field under **Site settings**, and that field controlled the header. I changed it there, then selected **Publish saved changes** on the **Deployments** page, and the header updated.
 
 ## Test your own instructions
 
