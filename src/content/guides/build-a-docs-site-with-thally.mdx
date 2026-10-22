@@ -37,7 +37,7 @@ The starter site comes with template pages about Thally itself, so the first job
 
 ## Configure the navigation
 
-In `docs.json`, each tab contains groups, and each group lists page names without the `.mdx` extension. I removed the template tabs and groups and kept two tabs: **Get started** (introduction and quickstart) and **Guides** (one guide).
+In `docs.json`, each tab contains groups, and each group lists page names without the `.mdx` extension. I removed the template tabs and groups and kept two tabs: **Get started** (introduction and quickstart) and **Guides** (my CI guide and this article).
 
 Keep this file in step with your pages. If a page is listed here but the file is missing, readers get a 404.
 
@@ -65,10 +65,11 @@ Every commit to `main` triggers a new deployment. I committed, waited a minute o
 
 ## Test your own instructions
 
-I tested the quickstart and the guide in a separate practice repository, following them exactly as written. This found three problems:
+I tested the quickstart and the guide in a separate practice repository. For the guide, I built a minimal Node project with a placeholder test, so the steps had something to run against. I followed both pages step by step, and that found two problems:
 
 - The quickstart told readers to click the run named **Hello Workflow**, but GitHub names each run after the commit message. I rewrote that step.
 - The guide used `actions/checkout@v4` and `actions/setup-node@v4`, which now show a Node.js 20 deprecation warning. I moved both to `@v6` and added a troubleshooting entry.
-- The troubleshooting titles ran into their text, because a single line break does not start a new paragraph in MDX. I changed the titles to headings.
 
-None of these showed up while writing. They only appeared when I followed the steps like a new reader.
+A third problem only showed up on the live page. The troubleshooting titles ran into their text, because a single line break does not start a new paragraph in Markdown. I changed the titles to headings.
+
+The first two only appeared when I ran the steps myself, so it is worth testing instructions before publishing them.
