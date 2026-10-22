@@ -176,13 +176,12 @@ const templateSiteConfig: SiteConfig = {
 // Managed by Thally Cloud onboarding.
 export const siteConfig: SiteConfig = {
   ...templateSiteConfig,
-  name: "GitHub Actions Documentation",
+  name: "GitHub Actions",
   description: "Documentation for creating, managing, and troubleshooting GitHub Actions workflows.",
   repoUrl: "https://github.com/Nihar09/github-actions-documentation",
   links: [
     { label: "Get started", href: "/quickstart" },
     { label: "Support", href: "https://github.com/Nihar09/github-actions-documentation/issues/new" },
     { label: "GitHub", href: "https://github.com/Nihar09/github-actions-documentation" },
-    { label: "Changelog", href: "/changelog" },
   ],
 };
