@@ -39,6 +39,12 @@
           "pages": [
             "guides/run-tests-on-push"
           ]
+        },
+        {
+          "group": "Build your own docs site",
+          "pages": [
+            "guides/build-a-docs-site-with-thally"
+          ]
         }
       ]
     }
